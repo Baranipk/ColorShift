@@ -7,12 +7,14 @@ public class PlayerController : MonoBehaviour
 
     public PlayerIdleState idleState;
     public PlayerMoveState moveState;
+    public PlayerJumpState jumpState;
     private void Awake()
     {       
         playerStateMachine = new PlayerStateMachine();
 
         idleState = new PlayerIdleState(this);
         moveState = new PlayerMoveState(this);
+        jumpState = new PlayerJumpState(this);
     }
 
     private void Start() => playerStateMachine.Initialize(idleState);

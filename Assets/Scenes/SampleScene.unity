@@ -498,7 +498,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1347661071002361638, guid: f4f83085c732871499c1fbd6f54e4d98, type: 3}
       propertyPath: jumpForce
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1347661071002361638, guid: f4f83085c732871499c1fbd6f54e4d98, type: 3}
       propertyPath: jumpHeight
@@ -523,6 +523,14 @@ PrefabInstance:
     - target: {fileID: 1959674774670606139, guid: f4f83085c732871499c1fbd6f54e4d98, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104539305994834146, guid: f4f83085c732871499c1fbd6f54e4d98, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104539305994834146, guid: f4f83085c732871499c1fbd6f54e4d98, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3353646659034545434, guid: f4f83085c732871499c1fbd6f54e4d98, type: 3}
       propertyPath: m_LocalPosition.x
@@ -563,6 +571,10 @@ PrefabInstance:
     - target: {fileID: 3353646659034545434, guid: f4f83085c732871499c1fbd6f54e4d98, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276228948889656352, guid: f4f83085c732871499c1fbd6f54e4d98, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -13,7 +13,7 @@ public class PlayerStateMachine
 
     public void ChangeState(IplayerState newState)
     {
-        if (CurrentState == newState) return;
+        //if (CurrentState == newState) return;
 
         CurrentState.Exit();
         CurrentState = newState;

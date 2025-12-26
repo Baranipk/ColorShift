@@ -5,11 +5,14 @@ public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerAction _playerInput;
     private PlayerMovement _playerMovement;
+    private PlayerController _playerController;
     
     void Awake()
     {
         _playerInput = new PlayerAction();
         _playerMovement = GetComponent<PlayerMovement>();
+        _playerController = GetComponent<PlayerController>();
+        
     }
 
     private void OnEnable()
@@ -35,7 +38,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.ReadValueAsButton())
         {
-            _playerMovement.Jump();
+            _playerController.playerStateMachine.ChangeState(_playerController.jumpState); 
         }
     }
     

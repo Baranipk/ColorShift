@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public interface IplayerState 
+public interface IplayerState
 {
-    void Enter();      
-    void Update();     
+    void Enter();
+    void Update();
     void Exit();
     void FixedUpdate();
 }

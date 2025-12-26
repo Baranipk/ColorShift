@@ -5,6 +5,7 @@ public class PlayerIdleState : IplayerState
     Animator animator;
     PlayerController controller;
     PlayerInputHandler inputHandler;
+    PlayerAnimation playerAnimation;
 
     public PlayerIdleState(PlayerController controller)
     {
@@ -12,10 +13,13 @@ public class PlayerIdleState : IplayerState
 
         animator = controller.gameObject.GetComponent<Animator>();
         inputHandler = controller.gameObject.GetComponent<PlayerInputHandler>();
+        playerAnimation = controller.gameObject.GetComponent<PlayerAnimation>();
 
     }
     public void Enter(){
         Debug.Log("Idle Statete girildi");
+        playerAnimation.SetAnimationIdle();
+        
     }
 
     public void Exit(){

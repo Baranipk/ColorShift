@@ -2,15 +2,32 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    private Animator _animator; 
-    void Start()
+    Animator animator;
+
+    public void Awake()
     {
-       _animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+    }
+    public void SetAnimationWalk()
+    {
+        animator.SetBool("IsFall", false);
+        animator.SetBool("IsWalk", true);
     }
 
-       
-    void Update()
+    public void SetAnimationIdle()
     {
-        
+        animator.SetBool("IsFall", false);
+        animator.SetBool("IsWalk", false);
+    }
+
+    public void SetAnimationJump()
+    {
+        animator.SetTrigger("Jump");
+        animator.SetBool("IsFall", false);
+    }
+
+    public void SetAnimationFall()
+    {
+        animator.SetBool("IsFall", true);
     }
 }
