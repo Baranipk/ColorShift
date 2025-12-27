@@ -41,5 +41,16 @@ public class PlayerInputHandler : MonoBehaviour
             _playerController.playerStateMachine.ChangeState(_playerController.jumpState); 
         }
     }
+
+    public void ActivateInput()
+    {
+        _playerInput.Player.Enable();
+    }
+
+    public void DeactivateInput() 
+    {
+        _playerInput.Player.Disable();
+    }
+
     
 }

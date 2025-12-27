@@ -30,4 +30,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator.SetBool("IsFall", true);
     }
+
+    public void Death()
+    {
+        animator.SetTrigger("Death");
+    }
 }

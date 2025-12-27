@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public PlayerIdleState idleState;
     public PlayerMoveState moveState;
     public PlayerJumpState jumpState;
+    public PlayerDeathState deathState;
     private void Awake()
     {       
         playerStateMachine = new PlayerStateMachine();
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
         idleState = new PlayerIdleState(this);
         moveState = new PlayerMoveState(this);
         jumpState = new PlayerJumpState(this);
+        deathState = new PlayerDeathState(this);
     }
 
     private void Start() => playerStateMachine.Initialize(idleState);
