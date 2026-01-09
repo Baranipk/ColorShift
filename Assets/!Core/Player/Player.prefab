@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3353646659034545434}
   - component: {fileID: 4583317267052128042}
+  - component: {fileID: 4570547621814039048}
   - component: {fileID: 2423152099442294781}
   - component: {fileID: 2104539305994834146}
   - component: {fileID: 1347661071002361638}
   - component: {fileID: 3288323384955441572}
   - component: {fileID: 7139848860287352733}
-  - component: {fileID: 4570547621814039048}
   - component: {fileID: 6152222984041686622}
   - component: {fileID: 3052335978216962004}
   m_Layer: 0
@@ -99,6 +99,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4570547621814039048
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959674774670606139}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f64fd861dfbcc8f47807c6c16b7c835f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &2423152099442294781
 Rigidbody2D:
   serializedVersion: 5
@@ -216,28 +238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31da1fc2294c1644b873f7838d5a046a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
---- !u!95 &4570547621814039048
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1959674774670606139}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f64fd861dfbcc8f47807c6c16b7c835f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6152222984041686622
 MonoBehaviour:
   m_ObjectHideFlags: 0
