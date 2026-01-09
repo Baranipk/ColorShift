@@ -94,8 +94,6 @@ public class PlayerColorHandler : MonoBehaviour
         await spriteRenderer.material.DOColor(color, _baseColorId, duration)
             .SetEase(Ease.InOutQuad)
             .ToUniTask();
-
-        await UniTask.Delay(500);
         isColorChaging = false;
 	}
 }

@@ -19,7 +19,11 @@ public class PlayerController : MonoBehaviour
         deathState = new PlayerDeathState(this);
     }
 
-    private void Start() => playerStateMachine.Initialize(idleState);
+    private void Start() 
+    {
+        gameObject.transform.position = GameObject.FindGameObjectWithTag("StartPosition").transform.position;
+        playerStateMachine.Initialize(idleState);
+    }
 
     private void Update() => playerStateMachine.CurrentState.Update();
     private void FixedUpdate()

@@ -8,7 +8,6 @@ public class LevelManager : MonoBehaviour
 
 	[Header("Settings")]
 	[SerializeField] private float deathDelay = 1.5f; // Ölünce kaç sn beklesin?
-
 	// Çoklu týklamalarý veya ölümleri engellemek için flag
 	private bool _isProcessRunning = false;
 
@@ -24,6 +23,7 @@ public class LevelManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
+	
 
 	// Oyuncu öldüðünde dýþarýdan çaðrýlacak metot
 	// async UniTaskVoid: Unity eventleri (Button click, Collision) tarafýndan çaðrýlacaksa Void kullanýlýr.
@@ -41,8 +41,7 @@ public class LevelManager : MonoBehaviour
 
 		// 2. Sahneyi Asenkron Yükle
 		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-		await SceneManager.LoadSceneAsync(currentSceneIndex).ToUniTask();
-
+		await SceneManager.LoadSceneAsync(currentSceneIndex).ToUniTask();		
 		// Ýþlem bitti, bayraðý indir
 		_isProcessRunning = false;
 	}
