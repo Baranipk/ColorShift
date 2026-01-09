@@ -15,4 +15,12 @@ public class PlayerInteraction : MonoBehaviour
             interactable.OnStepOn(controller);
         }
     }
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.TryGetComponent(out IInteractable interactable))
+		{
+			interactable.OnStepOn(controller);
+		}
+	}
 }

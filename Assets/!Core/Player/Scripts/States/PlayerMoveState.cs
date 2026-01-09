@@ -14,13 +14,12 @@ public class PlayerMoveState : IplayerState
         playerAnimation = controller.gameObject.GetComponent<PlayerAnimation>();
         
     }
-    public void Enter(){
-        Debug.Log("Movement Statete girild");
+    public void Enter(){      
         playerAnimation.SetAnimationWalk();
 
     }
     public void Exit(){
-        Debug.Log("Movement Stateten çýkýldý");
+        
     }
     public void FixedUpdate()
     {

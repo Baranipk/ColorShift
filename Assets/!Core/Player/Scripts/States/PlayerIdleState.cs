@@ -17,13 +17,13 @@ public class PlayerIdleState : IplayerState
 
     }
     public void Enter(){
-        Debug.Log("Idle Statete girildi");
+        
         playerAnimation.SetAnimationIdle();
         
     }
 
     public void Exit(){
-        Debug.Log("Idle Stateden çýkýldý");
+      
     }
 
     public void FixedUpdate(){}

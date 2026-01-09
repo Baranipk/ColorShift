@@ -19,7 +19,6 @@ public class PlayerDeathState : IplayerState
 
     public async void Enter()
     {
-        Debug.Log("Player Death");
         controller.GetComponent<PlayerAnimation>().Death();
         controller.GetComponent<PlayerInputHandler>().DeactivateInput();
         controller.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
