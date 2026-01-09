@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7139848860287352733}
   - component: {fileID: 6152222984041686622}
   - component: {fileID: 3052335978216962004}
+  - component: {fileID: 1842003322778491576}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -207,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 5
-  jumpForce: 10
+  jumpForce: 12
   groundCheckRadius: 0.2
   groundCheckTransform: {fileID: 7276228948889656352}
   groundLayer:
@@ -262,6 +263,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a0e25253e8c854c93c7054a9220fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
+--- !u!114 &1842003322778491576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959674774670606139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfe04d7ade55e784cbbbdd8a5043777f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerColorHandler
+  currentColor: 0
 --- !u!1 &5613900248311907579
 GameObject:
   m_ObjectHideFlags: 0
