@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Sprite oppenedSprite;
+    private SpriteRenderer spriteRenderer;
+    private Collider2D collider;
 
-    
-    void Update()
-    {
-        
-    }
 
+
+    private Sprite baseSprite;
+	private void Awake()
+	{
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        collider = GetComponent<Collider2D>();
+        baseSprite = spriteRenderer.sprite;
+	}
     public async void open()
     {
-        
+        spriteRenderer.sprite = oppenedSprite;
+        collider.enabled = false;
     }
 }
