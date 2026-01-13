@@ -95,5 +95,6 @@ public class PlayerColorHandler : MonoBehaviour
             .SetEase(Ease.InOutQuad)
             .ToUniTask();
         isColorChaging = false;
+		EventBus<OnColorChanged>.Publish(new OnColorChanged() { PlayerColor = currentColor }); 
 	}
 }
