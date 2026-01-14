@@ -69,32 +69,12 @@ public class PlayerColorHandler : MonoBehaviour
 
 		currentColor = playerColor;
 
-        switch (playerColor)
-        {
-            case PlayerColors.white:
-                color = Color.white;
-                break;
-			case PlayerColors.green:
-				color = new Color(0.4588f,0.6549f,0.2627f);
-				break;
-			case PlayerColors.pink:
-				color = new Color(0.7765f,0.3176f,0.5922f);
-				break;
-			case PlayerColors.yellow:
-				color = new Color(0.8706f,0.6196f,0.2549f);
-				break;
-			case PlayerColors.blue:
-				color = new Color(0.3098f,0.5608f,0.7294f);
-				break;
-            default:
-				color = Color.white;
-                break;
-		}
-
+        color = ColorSO.GetColorFromPlayerColors(playerColor);
+		EventBus<OnColorChanged>.Publish(new OnColorChanged() { PlayerColor = currentColor });
         await spriteRenderer.material.DOColor(color, _baseColorId, duration)
             .SetEase(Ease.InOutQuad)
             .ToUniTask();
         isColorChaging = false;
-		EventBus<OnColorChanged>.Publish(new OnColorChanged() { PlayerColor = currentColor }); 
+		 
 	}
 }

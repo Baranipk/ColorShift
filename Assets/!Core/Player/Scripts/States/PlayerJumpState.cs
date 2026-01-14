@@ -7,6 +7,7 @@ public class PlayerJumpState : IplayerState
     Rigidbody2D rigidbody;
     PlayerAnimation playerAnimation;
     private bool isFalling = false;
+    
     public PlayerJumpState(PlayerController controller)
     {
         this.controller = controller;
@@ -19,8 +20,12 @@ public class PlayerJumpState : IplayerState
     {
         Debug.Log("Jumped");
 
-        if (playerMovement.IsGrounded())
+        if (playerMovement.IsGrounded() || playerMovement.isDoubleJump)
         {
+            if (playerMovement.isDoubleJump && !playerMovement.IsGrounded())
+            {
+				playerMovement.isDoubleJump = false;
+            }
             playerMovement.Jump();
             playerAnimation.SetAnimationJump();
         }

@@ -1,0 +1,12 @@
+using UnityEngine;
+
+public class FinishInteraction : MonoBehaviour, IInteractable
+{
+	public void Interact()
+	{}
+
+	public async void OnStepOn(PlayerController player)
+	{
+	 LevelManager.Instance.LoadNextLevel().Forget();
+	}
+}

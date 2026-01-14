@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public PlayerMoveState moveState;
     public PlayerJumpState jumpState;
     public PlayerDeathState deathState;
+    public PlayerBumperState bumperState;
     private void Awake()
     {       
         playerStateMachine = new PlayerStateMachine();
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
         moveState = new PlayerMoveState(this);
         jumpState = new PlayerJumpState(this);
         deathState = new PlayerDeathState(this);
+        bumperState = new PlayerBumperState(this);
     }
 
     private void Start() 

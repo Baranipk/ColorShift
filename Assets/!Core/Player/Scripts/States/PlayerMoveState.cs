@@ -26,7 +26,7 @@ public class PlayerMoveState : IplayerState
         _playerMovement.Move();
     }
     public void Update(){
-        if(Mathf.Abs(rigidbody.linearVelocity.x) <= 0.01f)
+		if (Mathf.Abs(rigidbody.linearVelocity.x) <= 0.01f)
         {
             //rigidbody.linearVelocity = Vector3.zero;
             Controller.playerStateMachine.ChangeState(Controller.idleState);

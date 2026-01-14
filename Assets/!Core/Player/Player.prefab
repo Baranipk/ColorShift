@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 6152222984041686622}
   - component: {fileID: 3052335978216962004}
   - component: {fileID: 1842003322778491576}
+  - component: {fileID: 5866892257960906323}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -207,13 +208,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac1e74b3cc39e446bbb236187ab8eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 7
+  maxSpeed: 7
+  acceleration: 15
+  deceleration: 20
+  turnSpeed: 15
+  velPower: 0.9
   jumpForce: 12
   groundCheckRadius: 0.2
   groundCheckTransform: {fileID: 7276228948889656352}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  isDoubleJump: 0
   _playerInputHandler: {fileID: 3288323384955441572}
 --- !u!114 &3288323384955441572
 MonoBehaviour:
@@ -276,6 +282,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerColorHandler
   currentColor: 0
+--- !u!114 &5866892257960906323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959674774670606139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9821dddb308607d428732c71057fdd96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBoost
 --- !u!1 &5613900248311907579
 GameObject:
   m_ObjectHideFlags: 0

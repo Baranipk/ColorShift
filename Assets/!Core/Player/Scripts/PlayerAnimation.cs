@@ -35,4 +35,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator.SetTrigger("Death");
     }
+
+    public void Bump()
+    {
+		animator.SetTrigger("Bump");
+	}
 }
