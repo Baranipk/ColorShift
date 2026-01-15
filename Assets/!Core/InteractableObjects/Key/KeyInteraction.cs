@@ -12,6 +12,7 @@ public class KeyInteraction : MonoBehaviour ,IInteractable
 	public async void OnStepOn(PlayerController player)
 	{
 		await OnCollected();
+		SoundManager.Instance.Get("DoorOpen").Play();
 		GameObject.Destroy(gameObject);
 	}
 

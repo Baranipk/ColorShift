@@ -22,7 +22,7 @@ public class PlayerDeathState : IplayerState
         controller.GetComponent<PlayerAnimation>().Death();
         controller.GetComponent<PlayerInputHandler>().DeactivateInput();
         controller.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
-
+        SoundManager.Instance.Get("Death").Play();
         //Disolve Effect
 		await DOTween.To(() => _material.GetFloat(DissolveAmountID),
 				 x => _material.SetFloat(DissolveAmountID, x), 1.1f, 1.5f)

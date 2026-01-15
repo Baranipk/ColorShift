@@ -26,6 +26,8 @@ public class BumperInteraction : MonoBehaviour, IInteractable
 		BumperAnim().Forget();
 		player.playerStateMachine.ChangeState(player.bumperState);
 		Rigidbody2D playerRb = player.gameObject.GetComponent<Rigidbody2D>();
+		var sound = SoundManager.Instance.Get("Bumper");
+		sound.Play();
 		//playerRb.linearVelocity = Vector2.zero;
 		Vector2 direction = Vector2.zero;
 		if (left.Dir == 1)

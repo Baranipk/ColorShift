@@ -7,6 +7,7 @@ public class FinishInteraction : MonoBehaviour, IInteractable
 
 	public async void OnStepOn(PlayerController player)
 	{
-	 LevelManager.Instance.LoadNextLevel().Forget();
+		LevelManager.Instance.LoadNextLevel().Forget();
+		SoundManager.Instance.Get("FinishLine").Play();
 	}
 }

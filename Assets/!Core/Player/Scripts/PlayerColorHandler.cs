@@ -35,6 +35,7 @@ public class PlayerColorHandler : MonoBehaviour
 	}
 	public async UniTaskVoid ChanceRandomColor()
     {
+		SoundManager.Instance.Get("ColorChange").Play();
 		PlayerColors randomColor;
         do
         {

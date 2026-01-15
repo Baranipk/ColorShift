@@ -6,6 +6,9 @@ public class PlayerJumpState : IplayerState
     PlayerMovement playerMovement;
     Rigidbody2D rigidbody;
     PlayerAnimation playerAnimation;
+
+    AudioSource audioSource;
+
     private bool isFalling = false;
     
     public PlayerJumpState(PlayerController controller)
@@ -14,14 +17,16 @@ public class PlayerJumpState : IplayerState
         playerMovement = controller.gameObject.GetComponent<PlayerMovement>();
         rigidbody = controller.gameObject.GetComponent<Rigidbody2D>();
         playerAnimation = controller.gameObject.GetComponent<PlayerAnimation>();
+        audioSource = controller.gameObject.GetComponent<AudioSource>();
 
     }
     public void Enter()
     {
         Debug.Log("Jumped");
-
+        
         if (playerMovement.IsGrounded() || playerMovement.isDoubleJump)
         {
+            SoundManager.Instance.Get("Jump").Play();
             if (playerMovement.isDoubleJump && !playerMovement.IsGrounded())
             {
 				playerMovement.isDoubleJump = false;
@@ -51,6 +56,7 @@ public class PlayerJumpState : IplayerState
 
         if (playerMovement.IsGrounded() && isFalling)
         {
+            SoundManager.Instance.Get("Fall")?.Play();
             controller.playerStateMachine.ChangeState(controller.idleState);
         }
     }

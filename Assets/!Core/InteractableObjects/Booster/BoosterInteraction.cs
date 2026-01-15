@@ -33,7 +33,9 @@ public class BoosterInteraction : MonoBehaviour, IInteractable
 	{
 		if (currentColor == PlayerColors.white || player.GetComponent<PlayerColorHandler>().currentColor == currentColor)
 		{
+			
 			player.GetComponent<PlayerBoost>().Boost(boosterType,boostForce);
+			SoundManager.Instance.Get("Boosters").Play();
 		}
 	}
 
