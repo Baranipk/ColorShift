@@ -4,7 +4,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private Sprite oppenedSprite;
     private SpriteRenderer spriteRenderer;
-    private Collider2D collider;
+    private Collider2D colliders;
 
 
 
@@ -12,12 +12,12 @@ public class Door : MonoBehaviour
 	private void Awake()
 	{
         spriteRenderer = GetComponent<SpriteRenderer>();
-        collider = GetComponent<Collider2D>();
+        colliders = GetComponent<Collider2D>();
         baseSprite = spriteRenderer.sprite;
 	}
-    public async void open()
+    public void open()
     {
         spriteRenderer.sprite = oppenedSprite;
-        collider.enabled = false;
+        colliders.enabled = false;
     }
 }

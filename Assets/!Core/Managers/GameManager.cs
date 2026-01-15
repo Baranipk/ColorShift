@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public async void PauseGame() {
+	public void PauseGame() {
 		Time.timeScale = 0f;
 	}
 

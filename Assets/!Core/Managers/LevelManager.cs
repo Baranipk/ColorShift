@@ -7,8 +7,7 @@ public class LevelManager : MonoBehaviour
 {
 	public static LevelManager Instance { get; private set; }
 
-	[Header("Settings")]
-	[SerializeField] private float deathDelay = 1.5f; // Ölünce kaç sn beklesin?
+	[Header("Settings")] // Ölünce kaç sn beklesin?
 	// Çoklu týklamalarý veya ölümleri engellemek için flag
 	private bool _isProcessRunning = false;
 
@@ -71,6 +70,7 @@ public class LevelManager : MonoBehaviour
 		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 		await SceneManager.LoadSceneAsync(currentSceneIndex).ToUniTask();
 		await SceneTransitionManager.Instance.OpenCurtainAsync();
+		Time.timeScale = 1f;
 		// Ýþlem bitti, bayraðý indir
 		_isProcessRunning = false;
 	}

@@ -9,14 +9,14 @@ public class KeyInteraction : MonoBehaviour ,IInteractable
 		
 	}
 
-	public async void OnStepOn(PlayerController player)
+	public void OnStepOn(PlayerController player)
 	{
-		await OnCollected();
+		OnCollected();
 		SoundManager.Instance.Get("DoorOpen").Play();
 		GameObject.Destroy(gameObject);
 	}
 
-	private async UniTask OnCollected()
+	private  void OnCollected()
 	{
 		door.open();
 	}

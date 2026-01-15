@@ -30,7 +30,7 @@ public class PlayerColorHandler : MonoBehaviour
 	{
         if (Input.GetKeyDown(KeyCode.Q) && !isColorChaging)
         {
-           ChanceRandomColor();
+           ChanceRandomColor().Forget();
         }
 	}
 	public async UniTaskVoid ChanceRandomColor()

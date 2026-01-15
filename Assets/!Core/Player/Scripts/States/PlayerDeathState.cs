@@ -28,7 +28,8 @@ public class PlayerDeathState : IplayerState
 				 x => _material.SetFloat(DissolveAmountID, x), 1.1f, 1.5f)
 			 .ToUniTask();
 		await UniTask.Delay(1000);
-        LevelManager.Instance.HandlePlayerDeath();
+        Time.timeScale = 0f;
+        LevelManager.Instance.HandlePlayerDeath().Forget();
     }
 
     public void Exit(){}

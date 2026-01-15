@@ -24,8 +24,4 @@ public class PauseButtonManager : MonoBehaviour
         LevelManager.Instance.QuitGame();
     }
 
-    public async void ClosePauseMenu()
-    {
-
-    }
 }
