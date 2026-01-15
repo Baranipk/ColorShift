@@ -62,9 +62,7 @@ public class LevelManager : MonoBehaviour
 		if (_isProcessRunning) return;
 
 		_isProcessRunning = true;
-		Debug.Log("UniTask: Oyuncu öldü, iþlemler baþlatýlýyor...");
-
-
+		Time.timeScale = 0;
 		await SceneTransitionManager.Instance.CloseCurtainAsync();
 		// 2. Sahneyi Asenkron Yükle
 		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -103,10 +101,7 @@ public class LevelManager : MonoBehaviour
 
 	public async void ReSpawn()
 	{
-		await SceneTransitionManager.Instance.CloseCurtainAsync();
-		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-		await SceneManager.LoadSceneAsync(currentSceneIndex);
-		await SceneTransitionManager.Instance.OpenCurtainAsync();
+		HandlePlayerDeath().Forget();
 	}
 
 	public async void loadMainMenu() {
