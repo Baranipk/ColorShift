@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,15 @@ public class LevelManager : MonoBehaviour
 	// Çoklu týklamalarý veya ölümleri engellemek için flag
 	private bool _isProcessRunning = false;
 
+	[System.Serializable]
+	public class LevelInfo
+	{
+		public string levelDisplayName; // Örn: "Level 1"
+		public int sceneBuildIndex;     // Build Settings'deki index numarasý
+	}
+
+	[Header("Level Setup")]
+	public List<LevelInfo> levels; // Editörden dolduracaðýn liste burasý
 	private void Awake()
 	{
 		if (Instance == null)
@@ -23,7 +33,27 @@ public class LevelManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-	
+	public async UniTaskVoid LoadSpecificLevel(int sceneIndex)
+	{
+		if (_isProcessRunning) return;
+		_isProcessRunning = true;
+
+		Debug.Log($"Level {sceneIndex} yükleniyor...");
+
+		// Ýsteðe baðlý: Ufak bir bekleme veya loading ekraný açma
+		await UniTask.Delay(100);
+
+		if (sceneIndex < SceneManager.sceneCountInBuildSettings)
+		{
+			await SceneManager.LoadSceneAsync(sceneIndex).ToUniTask();
+		}
+		else
+		{
+			Debug.LogError("Hata: Girilen Scene Index Build Settings'de yok!");
+		}
+
+		_isProcessRunning = false;
+	}
 
 	// Oyuncu öldüðünde dýþarýdan çaðrýlacak metot
 	// async UniTaskVoid: Unity eventleri (Button click, Collision) tarafýndan çaðrýlacaksa Void kullanýlýr.
@@ -35,13 +65,12 @@ public class LevelManager : MonoBehaviour
 		_isProcessRunning = true;
 		Debug.Log("UniTask: Oyuncu öldü, iþlemler baþlatýlýyor...");
 
-		// 1. Bekleme Süresi (Coroutine'deki yield return new WaitForSeconds yerine)
-		// cancellationToken: Eðer bu bekleme sýrasýnda obje yok olursa hata vermemesi için.
-		await UniTask.Delay((int)(deathDelay * 1000), cancellationToken: this.GetCancellationTokenOnDestroy());
 
+		await SceneTransitionManager.Instance.CloseCurtainAsync();
 		// 2. Sahneyi Asenkron Yükle
 		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-		await SceneManager.LoadSceneAsync(currentSceneIndex).ToUniTask();		
+		await SceneManager.LoadSceneAsync(currentSceneIndex).ToUniTask();
+		await SceneTransitionManager.Instance.OpenCurtainAsync();
 		// Ýþlem bitti, bayraðý indir
 		_isProcessRunning = false;
 	}
@@ -52,7 +81,7 @@ public class LevelManager : MonoBehaviour
 		if (_isProcessRunning) return;
 		_isProcessRunning = true;
 
-		await UniTask.Delay(1000, cancellationToken: this.GetCancellationTokenOnDestroy());
+		await SceneTransitionManager.Instance.CloseCurtainAsync();
 
 		int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
@@ -60,6 +89,7 @@ public class LevelManager : MonoBehaviour
 		if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
 		{
 			await SceneManager.LoadSceneAsync(nextSceneIndex).ToUniTask();
+			await SceneTransitionManager.Instance.OpenCurtainAsync();
 		}
 		else
 		{
@@ -69,5 +99,32 @@ public class LevelManager : MonoBehaviour
 		}
 
 		_isProcessRunning = false;
+	}
+
+	public async void ReSpawn()
+	{
+		await SceneTransitionManager.Instance.CloseCurtainAsync();
+		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+		await SceneManager.LoadSceneAsync(currentSceneIndex);
+		await SceneTransitionManager.Instance.OpenCurtainAsync();
+	}
+
+	public async void loadMainMenu() {
+		if (_isProcessRunning) return;
+		await SceneTransitionManager.Instance.CloseCurtainAsync();
+		await SceneManager.LoadSceneAsync(0).ToUniTask();
+		await SceneTransitionManager.Instance.OpenCurtainAsync();
+	}
+
+	public void QuitGame()
+	{
+		// Eðer Unity Editör'ün içindeysen, play modunu durdur
+#if UNITY_EDITOR
+		UnityEditor.EditorApplication.isPlaying = false;
+
+		// Eðer oyun Build alýnmýþsa (exe, apk vs.) uygulamayý kapat
+#else
+            Application.Quit();
+#endif
 	}
 }

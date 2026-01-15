@@ -4,13 +4,11 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerAction _playerInput;
-    private PlayerMovement _playerMovement;
     private PlayerController _playerController;
     
     void Awake()
     {
         _playerInput = new PlayerAction();
-        _playerMovement = GetComponent<PlayerMovement>();
         _playerController = GetComponent<PlayerController>();
         
     }
@@ -19,7 +17,9 @@ public class PlayerInputHandler : MonoBehaviour
     {
         _playerInput.Player.Enable();
         _playerInput.Player.Jump.performed += JumpPressed;
-    }
+        _playerInput.Player.Pause.performed += PausePresed;
+
+	}
 
     private void OnDisable()
     {
@@ -42,7 +42,15 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    public void ActivateInput()
+    public void PausePresed(InputAction.CallbackContext context){
+		if (context.ReadValueAsButton())
+		{
+            EventBus<OnPausePressed>.Publish(new OnPausePressed());
+		}
+	}
+
+
+	public void ActivateInput()
     {
         _playerInput.Player.Enable();
     }

@@ -15,8 +15,8 @@ public enum PlayerColors
 public class PlayerColorHandler : MonoBehaviour
 {
     [HideInInspector] public PlayerColors currentColor = PlayerColors.white;
-
-    
+	[SerializeField] ParticleSystem changeEffect;
+	[SerializeField] TrailRenderer trailRenderer;    
     private SpriteRenderer spriteRenderer;
 	private int _baseColorId;
     private bool isColorChaging = false;
@@ -63,19 +63,57 @@ public class PlayerColorHandler : MonoBehaviour
 		 await ChangeColor(randomColor);
 	}
 
-    public async UniTask ChangeColor(PlayerColors playerColor, float duration= 1f)
-    {
-        isColorChaging = true;
-        Color color = Color.white;
+	public async UniTask ChangeColor(PlayerColors playerColor, float duration = 0.5f)
+	{
+		isColorChaging = true;
 
 		currentColor = playerColor;
+		Color targetColor = ColorSO.GetColorFromPlayerColors(playerColor);
 
-        color = ColorSO.GetColorFromPlayerColors(playerColor);
+		// Event fýrlatma
 		EventBus<OnColorChanged>.Publish(new OnColorChanged() { PlayerColor = currentColor });
-        await spriteRenderer.material.DOColor(color, _baseColorId, duration)
-            .SetEase(Ease.InOutQuad)
-            .ToUniTask();
-        isColorChaging = false;
-		 
+
+		
+
+		// 1. Sprite Rengi Deðiþimi (Task oluþturuyoruz ama await etmiyoruz henüz)
+		var spriteTask = spriteRenderer.material.DOColor(targetColor, _baseColorId, duration)
+			.SetEase(Ease.InOutQuad)
+			.ToUniTask();
+
+		// 2. Trail Rengi Deðiþimi
+		// TrailRenderer varsa onun da rengini deðiþtir
+		UniTask trailStartTask = UniTask.CompletedTask;
+		UniTask trailEndTask = UniTask.CompletedTask;
+
+		
+		if (trailRenderer != null)
+		{
+			// Baþlangýç Rengi
+			trailStartTask = DOTween.To(() => trailRenderer.startColor, x => trailRenderer.startColor = x, targetColor, duration)
+				.SetEase(Ease.InOutQuad)
+				.ToUniTask();
+
+			// Bitiþ Rengi (Eðer ucunun þeffaf olmasýný istersen burayý özelleþtirebilirsin)
+			// Örn: Color endColor = new Color(targetColor.r, targetColor.g, targetColor.b, 0);
+			trailEndTask = DOTween.To(() => trailRenderer.endColor, x => trailRenderer.endColor = x, targetColor, duration)
+				.SetEase(Ease.InOutQuad)
+				.ToUniTask();
+		}
+
+		
+
+		// Tüm animasyonlarýn (Sprite + Trail Start + Trail End) bitmesini bekle
+		await UniTask.WhenAll(spriteTask, trailStartTask, trailEndTask);
+
+		if (changeEffect != null)
+		{
+			// Particle rengini deðiþtirmek için "main" modülünü almalýyýz
+			var mainModule = changeEffect.main;
+			mainModule.startColor = targetColor; // Rengi ayarla
+
+		    changeEffect.Stop(); // Varsa eskisini durdur
+			changeEffect.Play(); // Efekti patlat!
+		}
+		isColorChaging = false;
 	}
 }

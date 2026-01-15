@@ -38,7 +38,7 @@ public class SoundManager : MonoBehaviour
 		return s; // Bulunan Sound nesnesini olduðu gibi ver
 	}
 
-	[ContextMenu("Koddaki Ayarlarý Uygula")]
+	[ContextMenu("Sounds Settings Set Default")]
 	public void ApplyCodeDefaults()
 	{
 		// 1. Koddaki "public float volume = 0.5f" gibi güncel deðerleri taþýyan
